@@ -200,5 +200,135 @@
 
 </div>
 
+<script>
+  // =========================
+  // UTILIDADES
+  // =========================
+
+  let bots = JSON.parse(localStorage.getItem("bots")) || [];
+
+  document.getElementById("userName").innerText =
+    localStorage.getItem("profileName") || "Usuario";
+
+  function showSection(section) {
+    const sections = document.querySelectorAll("main section");
+    sections.forEach(s => s.classList.add("hidden"));
+
+    document.getElementById("section-" + section).classList.remove("hidden");
+  }
+
+  function logout() {
+    alert("Sesión cerrada");
+    localStorage.clear();
+    location.reload();
+  }
+
+  // =========================
+  // BOTS
+  // =========================
+
+  function createBot() {
+    const name = document.getElementById("botName").value;
+    const type = document.getElementById("botType").value;
+
+    if (!name) return alert("Escribe un nombre");
+
+    const bot = {
+      id: Date.now(),
+      name,
+      type,
+      status: "activo"
+    };
+
+    bots.push(bot);
+    localStorage.setItem("bots", JSON.stringify(bots));
+
+    document.getElementById("botName").value = "";
+
+    logConsole(`🤖 Bot creado: ${name} (${type})`);
+    renderBots();
+  }
+
+  function renderBots() {
+    const container = document.getElementById("botsList");
+    container.innerHTML = "";
+
+    bots.forEach(bot => {
+      container.innerHTML += `
+        <div class="bg-gray-900 p-5 rounded-xl card glow">
+          <h3 class="text-xl font-bold text-cyan-400">${bot.name}</h3>
+          <p class="text-gray-400">Tipo: ${bot.type}</p>
+          <p class="text-green-400">Estado: ${bot.status}</p>
+
+          <button onclick="deleteBot(${bot.id})"
+            class="mt-3 bg-red-500 px-4 py-2 rounded-xl">
+            Eliminar
+          </button>
+        </div>
+      `;
+    });
+  }
+
+  function deleteBot(id) {
+    bots = bots.filter(b => b.id !== id);
+    localStorage.setItem("bots", JSON.stringify(bots));
+    renderBots();
+    logConsole("🗑️ Bot eliminado");
+  }
+
+  // =========================
+  // CONSOLA
+  // =========================
+
+  function logConsole(msg) {
+    const consoleDiv = document.getElementById("console");
+    consoleDiv.innerHTML += `<div>> ${msg}</div>`;
+    consoleDiv.scrollTop = consoleDiv.scrollHeight;
+  }
+
+  document.getElementById("cmd").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      const cmd = this.value;
+      this.value = "";
+
+      logConsole("💻 " + cmd);
+
+      if (cmd === "help") {
+        logConsole("Comandos: help, bots, clear");
+      } 
+      else if (cmd === "bots") {
+        logConsole("Bots activos: " + bots.length);
+      } 
+      else if (cmd === "clear") {
+        document.getElementById("console").innerHTML = "";
+      } 
+      else {
+        logConsole("Comando no reconocido");
+      }
+    }
+  });
+
+  // =========================
+  // PERFIL
+  // =========================
+
+  function saveProfile() {
+    const name = document.getElementById("profileName").value;
+    const bio = document.getElementById("profileBio").value;
+
+    localStorage.setItem("profileName", name);
+    localStorage.setItem("profileBio", bio);
+
+    document.getElementById("userName").innerText = name;
+
+    alert("Perfil guardado");
+  }
+
+  // =========================
+  // INICIO
+  // =========================
+
+  renderBots();
+</script>
 </body>
 </html>
