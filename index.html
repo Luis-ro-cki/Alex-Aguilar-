@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BotHost - Aloja tus Bots</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; }
+    .terminal { background: #0f172a; font-family: 'Courier New', monospace; }
+    .modal { animation: fadeIn 0.3s; }
+  </style>
+</head>
+<body class="bg-gray-950 text-white">
+
+  <!-- Navbar -->
+  <nav class="bg-black border-b border-gray-800 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <i class="fas fa-robot text-3xl text-blue-500"></i>
+        <h1 class="text-2xl font-bold">BotHost</h1>
+      </div>
+      <div id="nav-menu" class="hidden md:flex gap-6 text-lg">
+        <!-- Se llena con JS según login -->
+      </div>
+      <div class="flex items-center gap-4">
+        <span id="user-info" class="text-sm hidden"></span>
+        <button onclick="logout()" id="btn-logout" class="hidden bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm">Cerrar Sesión</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login / Register -->
+  <div id="auth-screen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
+    <div class="max-w-md w-full mx-6 bg-gray-900 p-10 rounded-3xl border border-gray-700">
+      <h2 class="text-4xl font-bold text-center mb-8">BotHost</h2>
+      
+      <div id="login-form">
+        <h3 class="text-2xl mb-6 text-center">Iniciar Sesión</h3>
+        <input id="login-user" type="text" placeholder="Usuario" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-5 py-4 mb-4">
+        <input id="login-pass" type="password" placeholder="Contraseña" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-5 py-4 mb-6">
+        <button onclick="login()" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl text-lg font-semibold">Entrar</button>
+        <p class="text-center mt-6 text-gray-400">¿No tienes cuenta? <span onclick="showRegister()" class="text-blue-400 cursor-pointer">Regístrate</span></p>
+      </div>
+
+      <div id="register-form" class="hidden">
+        <h3 class="text-2xl mb-6 text-center">Crear Cuenta</h3>
+        <input id="reg-user" type="text" placeholder="Usuario" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-5 py-4 mb-4">
+        <input id="reg-email" type="email" placeholder="Correo" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-5 py-4 mb-4">
+        <input id="reg-pass" type="password" placeholder="Contraseña" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-5 py-4 mb-6">
+        <button onclick="register()" class="w-full bg-green-600 hover:bg-green-700 py-4 rounded-2xl text-lg font-semibold">Registrarme</button>
+        <p class="text-center mt-6 text-gray-400">¿Ya tienes cuenta? <span onclick="showLogin()" class="text-blue-400 cursor-pointer">Inicia Sesión</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard (oculto al inicio) -->
+  <div id="dashboard" class="hidden min-h-screen">
+
+    <!-- Hero Dashboard -->
+    <section class="py-12 bg-gradient-to-r from-blue-900 to-gray-900">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-5xl font-bold mb-3">Bienvenido, <span id="welcome-name" class="text-blue-400"></span></h2>
+        <p class="text-xl text-gray-300">Gestiona y aloja tus bots fácilmente</p>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 py-10 grid lg:grid-cols-12 gap-8">
+
+      <!-- Sidebar Menú -->
+      <div class="lg:col-span-3">
+        <div class="bg-gray-900 rounded-3xl p-6 sticky top-6">
+          <h3 class="font-semibold mb-6 text-lg flex items-center gap-2"><i class="fas fa-bars"></i> Menú</h3>
+          <div class="space-y-2">
+            <button onclick="showSection('bots')" class="w-full text-left px-5 py-3 hover:bg-gray-800 rounded-2xl flex items-center gap-3"><i class="fas fa-robot"></i> Mis Bots</button>
+            <button onclick="showSection('deploy')" class="w-full text-left px-5 py-3 hover:bg-gray-800 rounded-2xl flex items-center gap-3"><i class="fas fa-plus"></i> Desplegar Bot</button>
+            <button onclick="showSection('console')" class="w-full text-left px-5 py-3 hover:bg-gray-800 rounded-2xl flex items-center gap-3"><i class="fas fa-terminal"></i> Consola</button>
+            <button onclick="showSection('logs')" class="w-full text-left px-5 py-3 hover:bg-gray-800 rounded-2xl flex items-center gap-3"><i class="fas fa-history"></i> Logs</button>
+          </div>
+          <div class="mt-10 text-xs text-gray-500">
+            Creado por <strong class="text-blue-400">Luis González</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenido Principal -->
+      <div class="lg:col-span-9">
+
+        <!-- Mis Bots -->
+        <div id="section-bots" class="section">
+          <h2 class="text-3xl font-bold mb-8">Mis Bots Alojados</h2>
+          <div class="grid md:grid-cols-2 gap-6" id="bots-list"></div>
+        </div>
+
+        <!-- Desplegar Bot -->
+        <div id="section-deploy" class="section hidden">
+          <h2 class="text-3xl font-bold mb-8">Desplegar Nuevo Bot</h2>
+          <div class="bg-gray-900 p-8 rounded-3xl">
+            <div class="grid gap-6">
+              <input id="bot-name" type="text" class="bg-gray-800 border border-gray-700 rounded-2xl px-5 py-4" placeholder="Nombre del bot">
+              <select id="bot-type" class="bg-gray-800 border border-gray-700 rounded-2xl px-5 py-4">
+                <option value="Telegram">Telegram</option>
+                <option value="Discord">Discord</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Custom">Node.js Custom</option>
+              </select>
+              <textarea id="bot-config" rows="6" class="bg-gray-800 border border-gray-700 rounded-2xl px-5 py-4" placeholder="Token, Configuración o Código..."></textarea>
+              <button onclick="deployBot()" class="bg-green-600 hover:bg-green-700 py-4 rounded-2xl text-xl font-semibold">🚀 Desplegar Bot</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consola -->
+        <div id="section-console" class="section hidden">
+          <h2 class="text-3xl font-bold mb-8">Consola en Vivo</h2>
+          <div id="console-output" class="terminal p-6 rounded-3xl h-96 overflow-auto text-green-400 text-sm leading-relaxed border border-gray-700"></div>
+          <div class="mt-4 flex gap-3">
+            <input id="console-input" type="text" class="flex-1 bg-gray-900 border border-gray-700 rounded-2xl px-6 py-4" placeholder="Escribe un comando...">
+            <button onclick="runCommand()" class="bg-blue-600 hover:bg-blue-700 px-10 rounded-2xl">Enviar</button>
+          </div>
+        </div>
+
+        <!-- Logs -->
+        <div id="section-logs" class="section hidden">
+          <h2 class="text-3xl font-bold mb-8">Historial de Logs</h2>
+          <div id="logs-list" class="bg-gray-900 p-6 rounded-3xl space-y-4 text-sm"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-black py-8 text-center text-gray-500 text-sm">
+    Creado por <strong>Luis González</strong> • Demo para GitHub Pages
+  </footer>
+
+  <script>
+    let currentUser = null;
+    let bots = [];
+
+    function showLogin() {
+      document.getElementById('login-form').classList.remove('hidden');
+      document.getElementById('register-form').classList.add('hidden');
+    }
+
+    function showRegister() {
+      document.getElementById('login-form').classList.add('hidden');
+      document.getElementById('register-form').classList.remove('hidden');
+    }
+
+    function register() {
+      const user = document.getElementById('reg-user').value.trim();
+      const pass = document.getElementById('reg-pass').value.trim();
+      if (!user || !pass) return alert("Usuario y contraseña son obligatorios");
+      
+      localStorage.setItem('botHost_user', user);
+      localStorage.setItem('botHost_pass', pass);
+      alert("✅ Registro exitoso! Ahora inicia sesión.");
+      showLogin();
+    }
+
+    function login() {
+      const user = document.getElementById('login-user').value.trim();
+      const pass = document.getElementById('login-pass').value.trim();
+      
+      const savedUser = localStorage.getItem('botHost_user');
+      const savedPass = localStorage.getItem('botHost_pass');
+      
+      if (user === savedUser && pass === savedPass) {
+        currentUser = user;
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        document.getElementById('welcome-name').textContent = user;
+        document.getElementById('user-info').textContent = `👤 ${user}`;
+        document.getElementById('user-info').classList.remove('hidden');
+        document.getElementById('btn-logout').classList.remove('hidden');
+        loadBots();
+        showSection('bots');
+      } else {
+        alert("❌ Usuario o contraseña incorrectos");
+      }
+    }
+
+    function logout() {
+      if (confirm("¿Cerrar sesión?")) {
+        currentUser = null;
+        document.getElementById('dashboard').classList.add('hidden');
+        document.getElementById('auth-screen').classList.remove('hidden');
+        document.getElementById('user-info').classList.add('hidden');
+        document.getElementById('btn-logout').classList.add('hidden');
+      }
+    }
+
+    function loadBots() {
+      const saved = localStorage.getItem('botHost_bots');
+      bots = saved ? JSON.parse(saved) : [
+        {id:1, name:"MiPrimerBot", type:"Telegram", status:"✅ Online", logs:[]}
+      ];
+      renderBots();
+    }
+
+    function saveBots() {
+      localStorage.setItem('botHost_bots', JSON.stringify(bots));
+    }
+
+    function renderBots() {
+      const container = document.getElementById('bots-list');
+      container.innerHTML = bots.map(bot => `
+        <div class="bg-gray-900 border border-gray-700 hover:border-blue-500 rounded-3xl p-6 transition">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="font-bold text-xl">${bot.name}</h3>
+              <p class="text-gray-400">${bot.type}</p>
+            </div>
+            <span class="text-sm \( {bot.status.includes('Online') ? 'text-green-400' : 'text-yellow-400'}"> \){bot.status}</span>
+          </div>
+          <div class="mt-6 flex gap-3">
+            <button onclick="toggleBot(${bot.id})" class="flex-1 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700">Toggle</button>
+            <button onclick="openConsole(${bot.id})" class="flex-1 py-3 rounded-2xl bg-gray-700 hover:bg-gray-600">Consola</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function deployBot() {
+      const name = document.getElementById('bot-name').value || "NuevoBot";
+      const type = document.getElementById('bot-type').value;
+      
+      const newBot = {
+        id: Date.now(),
+        name: name,
+        type: type,
+        status: "✅ Online",
+        logs: [`[${new Date().toLocaleTimeString()}] Bot ${name} desplegado`]
+      };
+      
+      bots.push(newBot);
+      saveBots();
+      renderBots();
+      alert(`🚀 Bot "${name}" desplegado correctamente!`);
+      showSection('bots');
+    }
+
+    function toggleBot(id) {
+      const bot = bots.find(b => b.id === id);
+      if (bot) {
+        bot.status = bot.status.includes('Online') ? "⏸️ Pausado" : "✅ Online";
+        saveBots();
+        renderBots();
+      }
+    }
+
+    function openConsole(id) {
+      showSection('console');
+      const bot = bots.find(b => b.id === id);
+      if (bot) {
+        document.getElementById('console-output').innerHTML = `<span class="text-blue-400">Consola de ${bot.name}:</span><br><br>`;
+      }
+    }
+
+    function runCommand() {
+      const input = document.getElementById('console-input');
+      const output = document.getElementById('console-output');
+      if (!input.value.trim()) return;
+
+      output.innerHTML += `<span class="text-yellow-400">&gt;</span> ${input.value}<br>`;
+      output.scrollTop = output.scrollHeight;
+
+      setTimeout(() => {
+        output.innerHTML += `Comando ejecutado correctamente.<br>`;
+        output.scrollTop = output.scrollHeight;
+      }, 400);
+
+      input.value = "";
+    }
+
+    function showSection(section) {
+      document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+      document.getElementById(`section-${section}`).classList.remove('hidden');
+    }
+
+    // Tecla Enter en consola
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !document.getElementById('console-input').classList.contains('hidden')) {
+        runCommand();
+      }
+    });
+
+    // Inicializar
+    window.onload = () => {
+      const savedUser = localStorage.getItem('botHost_user');
+      if (savedUser) {
+        // Auto-login si ya hay usuario (opcional)
+      }
+    };
+  </script>
+</body>
+</html>
