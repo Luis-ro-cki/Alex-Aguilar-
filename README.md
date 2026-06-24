@@ -1,6 +1,1 @@
-<p align="center">
-  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Coding" width="100%"/>
-</p>
-
-## Bienvenidos al proyecto 🚀
-**Creado por**: Luis González ⚡ + Sakura chan 🌸
+![Luis González × Sakura chan](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&width=600&lines=Luis+Gonz%C3%A1lez+%C3%97+Sakura+chan;Nuevo+Proyecto+Activado;Bienvenidos+al+Repo)
