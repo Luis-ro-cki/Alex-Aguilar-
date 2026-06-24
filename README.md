@@ -1,4 +1,4 @@
-![Bienvenidos](https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif)
+![Luis González × Sakura chan](fbid://1272110822648328)
 
-## Bienvenidos al proyecto
-Creado por: Luis González × Sakura chan
+## Bienvenidos al proyecto 🚀
+**Creado por**: Luis González ⚡ + Sakura chan 🌸
