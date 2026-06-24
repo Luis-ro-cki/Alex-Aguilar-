@@ -135,7 +135,7 @@
         <!-- Consola -->
         <div id="section-console" class="section hidden">
           <h2 class="text-4xl font-bold mb-6">Consola en Vivo</h2>
-          <div id="console-output" class="terminal p-8 rounded-3xl h-[440px] overflow-auto text-emerald-300 text-sm"></div>
+          <div id="console-output" class="terminal p-8 rounded-3xl h-[440px] overflow-auto text-emerald-300 text-sm whitespace-pre-wrap"></div>
           <div class="mt-5 flex gap-3">
             <input id="console-input" type="text" class="flex-1 bg-gray-900 border border-emerald-400/30 rounded-2xl px-6 py-4 focus:border-emerald-400" placeholder="Escribe un comando...">
             <button onclick="runCommand()" class="px-12 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-2xl font-bold">Enviar</button>
@@ -169,9 +169,65 @@
   
         <div id="console" class="bg-black text-green-400 p-4 h-64 overflow-y-auto"></div>
 
-        <input id="consoleInput"
-          class="w-full p-2 bg-gray-900 text-white"
-          placeholder="Escribe un comando...">
+          <input id="consoleInput"
+            class="w-full p-2 bg-gray-900 text-white"
+            placeholder="Escribe un comando...">
+
+        <!-- SECCIÓN PRECIOS COMPLETA CON PAYPAL -->
+        
+        <section id="pricing" style="padding: 80px 20px; background: #0f0f0f; color: #fff; text-align: center;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Elige tu plan</h2>
+          <p style="color: #aaa; margin-bottom: 50px;">Empieza gratis y escala cuando crezcas</p>
+  
+          <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; max-width: 1000px; margin: 0 auto;">
+    
+        <!-- Plan Gratis -->
+    
+        <div style="background: #1a1a1a; padding: 40px 30px; border-radius: 15px; width: 300px; border: 1px solid #333;">
+          <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Gratis</h3>
+          <p style="font-size: 2.8rem; font-weight: bold; margin: 20px 0;">$0<span style="font-size: 1rem; color: #aaa;">/mes</span></p>
+          <ul style="list-style: none; padding: 0; text-align: left; margin: 30px 0; line-height: 2;">
+            <li>✓ 1 Bot activo</li>
+            <li>✓ 512MB RAM</li>
+            <li>✓ 10GB tráfico mensual</li>
+            <li>✓ Logs de 24h</li>
+            <li>✓ Soporte por Discord</li>
+          </ul>
+          <a href="/signup" style="display: block; width: 100%; padding: 14px; background: #333; color: #fff; border: none; border-radius: 8px; text-decoration: none; font-weight: bold; box-sizing: border-box;">Empezar Gratis</a>
+        </div>
+
+        <!-- Plan Pro con PayPal -->
+      
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 30px; border-radius: 15px; width: 300px; position: relative; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);">
+          <span style="position: absolute; top: -12px; right: 20px; background: #ffd700; color: #000; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">Más popular</span>
+          <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Pro</h3>
+          <p style="font-size: 2.8rem; font-weight: bold; margin: 20px 0;">$15<span style="font-size: 1rem;">/mes</span></p>
+          <ul style="list-style: none; padding: 0; text-align: left; margin: 30px 0; line-height: 2;">
+            <li>✓ Bots ilimitados</li>
+            <li>✓ 4GB RAM</li>
+            <li>✓ 200GB tráfico mensual</li>
+            <li>✓ Logs ilimitados</li>
+            <li>✓ Soporte prioritario 24/7</li>
+            <li>✓ Consola web avanzada</li>
+          </ul>
+      
+          <!-- BOTÓN PAYPAL -->
+          
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="l29472954@gmail.com">
+            <input type="hidden" name="item_name" value="BotHost - Plan Pro Mensual">
+            <input type="hidden" name="amount" value="15.00">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="return" value="https://bothost.com/gracias">
+        
+            <input type="submit" value="Pagar $15 con PayPal" 
+               style="width: 100%; padding: 14px; background: #fff; color: #667eea; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;">
+          </form>
+        </div>
+
+  </div>
+</section>
 
       </div>
     </div>
