@@ -26,6 +26,28 @@ function runCommand(cmd) {
       consoleBox.innerHTML = "";
       break;
 
+    case "help":
+        print(`Comandos disponibles:
+
+help        - Muestra esta ayuda
+bots        - Bots activos
+clear, cls  - Limpia la consola
+date        - Fecha y hora
+time        - Hora actual`);
+        break;
+
+    case "bots":
+        print(`Bots activos: ${bots.length}`);
+        break;
+
+    case "date":
+        print(new Date().toLocaleString());
+        break;
+
+    case "time":
+        print(new Date().toLocaleTimeString());
+        break;
+
     // otros comandos aquí...
   }
 }

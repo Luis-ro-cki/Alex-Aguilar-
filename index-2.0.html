@@ -294,16 +294,30 @@
       logConsole("💻 " + cmd);
 
       if (cmd === "help") {
-        logConsole("Comandos: help, bots, clear");
-      } 
+        logConsole(`
+          Comandos disponibles:<br><br>
+
+          help &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Ayuda<br>
+          bots &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Bots activos<br>
+          clear, cls &nbsp; - Limpia la consola<br>
+          date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Fecha y hora<br>
+          time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Hora actual<br>
+        `);
+      }
       else if (cmd === "bots") {
         logConsole("Bots activos: " + bots.length);
-      } 
-      else if (cmd === "clear") {
+      }
+      else if (cmd === "clear" || cmd === "cls") {
         document.getElementById("console").innerHTML = "";
-      } 
+      }
+      else if (cmd === "date") {
+        logConsole(new Date().toLocaleString());
+      }
+      else if (cmd === "time") {
+        logConsole(new Date().toLocaleTimeString());
+      }
       else {
-        logConsole("Comando no reconocido");
+        logConsole("Comando no reconocido.");
       }
     }
   });
