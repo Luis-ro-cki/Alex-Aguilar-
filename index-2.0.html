@@ -329,6 +329,108 @@
   // =========================
 
   renderBots();
+
+  // =========================
+  // MEJORAS GENERALES UI
+  // =========================
+
+  function setActiveButton() {
+    const buttons = document.querySelectorAll("aside button");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("bg-indigo-600/30"));
+        btn.classList.add("bg-indigo-600/30");
+      });
+    });
+  }
+
+  setActiveButton();
+
+  // =========================
+  // SIMULACIÓN DE ESTADO DE BOTS
+  // =========================
+
+  function toggleBotStatus(id) {
+    bots = bots.map(b => {
+      if (b.id === id) {
+        b.status = b.status === "activo" ? "detenido" : "activo";
+      }
+      return b;
+    });
+
+    localStorage.setItem("bots", JSON.stringify(bots));
+    renderBots();
+    logConsole("🔄 Estado de bot actualizado");
+  }
+
+  // actualizar renderBots para incluir botón toggle
+  const oldRenderBots = renderBots;
+
+  renderBots = function () {
+    const container = document.getElementById("botsList");
+    container.innerHTML = "";
+
+    bots.forEach(bot => {
+      container.innerHTML += `
+        <div class="bg-gray-900 p-5 rounded-xl card glow">
+          <h3 class="text-xl font-bold text-cyan-400">${bot.name}</h3>
+          <p class="text-gray-400">Tipo: ${bot.type}</p>
+          <p class="${bot.status === "activo" ? "text-green-400" : "text-red-400"}">
+            Estado: ${bot.status}
+          </p>
+
+          <div class="flex gap-2 mt-3">
+            <button onclick="toggleBotStatus(${bot.id})"
+              class="bg-yellow-500 px-4 py-2 rounded-xl">
+              Toggle
+            </button>
+
+            <button onclick="deleteBot(${bot.id})"
+              class="bg-red-500 px-4 py-2 rounded-xl">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      `;
+    });
+  };
+
+  renderBots();
+
+  // =========================
+  // AUTO-SAVE PERFIL VISUAL
+  // =========================
+
+  const profileName = document.getElementById("profileName");
+  const profileBio = document.getElementById("profileBio");
+
+  if (localStorage.getItem("profileName")) {
+    profileName.value = localStorage.getItem("profileName");
+  }
+
+  if (localStorage.getItem("profileBio")) {
+    profileBio.value = localStorage.getItem("profileBio");
+  }
+
+  // =========================
+  // DASHBOARD DINÁMICO
+  // =========================
+
+  function updateDashboard() {
+    const activeBots = bots.filter(b => b.status === "activo").length;
+
+    document.querySelectorAll(".text-3xl")[0].innerText = activeBots;
+    document.querySelectorAll(".text-3xl")[1].innerText = bots.length * 12;
+  }
+
+  setInterval(updateDashboard, 2000);
+
+  // =========================
+  // BOOT MESSAGE
+  // =========================
+
+  logConsole("🚀 BotHost iniciado correctamente");
 </script>
 </body>
 </html>
