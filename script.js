@@ -13,3 +13,19 @@ consoleInput.addEventListener("keydown", function (e) {
     consoleInput.value = "";
   }
 });
+
+function runCommand(cmd) {
+  const parts = cmd.split(" ");
+  const command = parts[0].toLowerCase();
+  const args = parts.slice(1);
+
+  switch (command) {
+
+    case "clear":
+    case "cls":
+      consoleBox.innerHTML = "";
+      break;
+
+    // otros comandos aquí...
+  }
+}
