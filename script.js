@@ -27,7 +27,7 @@ function runCommand(cmd) {
       break;
 
     case "help":
-        print(`Comandos disponibles:
+        logConsole(`Comandos disponibles:
 
 help        - Muestra esta ayuda
 bots        - Bots activos
@@ -37,15 +37,15 @@ time        - Hora actual`);
         break;
 
     case "bots":
-        print(`Bots activos: ${bots.length}`);
+        logConsole(`Bots activos: ${bots.length}`);
         break;
 
     case "date":
-        print(new Date().toLocaleString());
+        logConsole(new Date().toLocaleString());
         break;
 
     case "time":
-        print(new Date().toLocaleTimeString());
+        logConsole(new Date().toLocaleTimeString());
         break;
 
     // otros comandos aquí...
