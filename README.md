@@ -13,7 +13,7 @@ width="100%"
 <!-- GIF ANIME KISS DE GITHUB - SI CARGA -->
 <img src="https://user-images.githubusercontent.com/47936500/141573453-774f60f3-4f1a-4c7e-81ef-78a5e62cf6a2.gif" width="400" alt="Anime Kiss"/>
 
-<br>
+//<br>
 
 <img src="https://img.shields.io/badge/Para%20mi%20Sakura-FF69B4?style=for-the-badge" />
 
