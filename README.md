@@ -1,55 +1,69 @@
 <div align="center">
 
-<!-- TITULO GIGANTE ANIMADO -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=800&color=00F5D4&center=true&vCenter=true&multiline=true&width=800&height=120&lines=⚡+LUIS+GONZÁLEZ+HOSTING;🚀+Servidor+Activo+24%2F7;💻+Stack%3A+Node.js+%2B+Nginx+%2B+Docker" alt="Typing SVG" />
+<!-- BANNER ATARDECER ANIMADO -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=14,22,30&height=220&section=header&text=ALEX%20AGUILAR%20HOSTING&fontSize=42&fontColor=FFA500&animation=fadeIn&fontAlignY=38&desc=🌾%20Finca%20Server%20al%20Atardecer%20%7C%2099.99%25%20Uptime&descAlignY=55&descSize=16" />
 
-<!-- BADGES ESTILO PANEL -->
+<!-- TITULO ATARDECER -->
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=26&duration=2500&pause=500&color=FF8C00&center=true&vCenter=true&width=700&lines=🌅+Cosechando%20Codigo%20al%20Atardecer;🌾+Pasto%20de%20Servidores%20en%20Vivo;⚡%20By%20Luis-ro-cki%20x%20Lou-Nyx" alt="Typing SVG" />
+
+<!-- BADGES SUNSET -->
 <p>
-  <img src="https://img.shields.io/badge/STATUS-ONLINE-00FF88?style=for-the-badge&logo=power&logoColor=black" />
-  <img src="https://img.shields.io/badge/UPTIME-99.99%25-00D9FF?style=for-the-badge&logo=cloudflare&logoColor=black" />
-  <img src="https://img.shields.io/badge/SERVER-NICARAGUA-FF006E?style=for-the-badge&logo=server&logoColor=white" />
+  <img src="https://img.shields.io/badge/HORA-DORADA-FF8C00?style=for-the-badge&logo=sun&logoColor=white&labelColor=2C1810" />
+  <img src="https://img.shields.io/badge/STATUS-ONLINE-FF4500?style=for-the-badge&logo=power&logoColor=white&labelColor=2C1810" />
+  <img src="https://komarev.com/ghpvc/?username=Luis-ro-cki&color=FF8C00&style=for-the-badge&label=VISITAS" />
 </p>
 
-<!-- LINEA NEON -->
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-9080-128a92674dfa.png" />
+<!-- PASTO ANIMADO SVG -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-9080-128a92674dfa.png" width="100%"/>
 
 </div>
 
-## 👑 Team Core
+## 👑 Guardianes de la Finca
 
 <table align="center">
 <tr>
 <td align="center" width="50%">
-<a href="https://github.com/tu-usuario">
-  <img src="https://github.com/tu-usuario.png" width="150px;" alt="Luis González"/><br>
-  <sub><b>🔥 Luis González</b></sub><br>
-  <sub><i>DevOps & Backend Lead</i></sub>
+<a href="https://github.com/Luis-ro-cki">
+  <img src="https://github.com/Luis-ro-cki.png?size=200" width="160px;" alt="Alex Aguilar"/><br>
+  <sub><b>🌅 Alex Aguilar</b></sub><br>
+  <sub><i>Dueño de la Finca</i></sub>
 </a>
 </td>
 <td align="center" width="50%">
-<a href="https://github.com/sakura-chan">
-  <img src="https://github.com/sakura-chan.png" width="150px;" alt="Sakura Chan"/><br>
-  <sub><b>🌸 Sakura Chan</b></sub><br>
-  <sub><i>Frontend & UI/UX</i></sub>
+<a href="https://github.com/Lou-Nyx">
+  <img src="https://github.com/Lou-Nyx.png?size=200" width="160px;" alt="Lou-Nyx"/><br>
+  <sub><b>🌾 Lou-Nyx</b></sub><br>
+  <sub><i>Cultivadora del Atardecer</i></sub>
 </a>
 </td>
 </tr>
 </table>
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-9080-128a92674dfa.png" />
+
+### 🌾 Campo de Servidores al Atardecer
+
+<!-- GIF ATARDECER / PASTO MOVIENDOSE -->
+<img src="https://media.giphy.com/media/L1R1tvI9svkIW/giphy.gif" width="600" alt="Sunset Grass Field"/>
+
+<!-- GRAFICA SUNSET -->
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Luis-ro-cki&bg_color=1A0F08&color=FFA500&line=FF8C00&point=FF4500&area_color=FF8C00&area=true&hide_border=true" />
+
 </div>
 
-## 📊 Arquitectura del Servidor
+## 🏞️ Mapa de la Finca al Atardecer
 
 ```mermaid
-graph LR
-    A[🌐 Usuario] --> B[⚡ Nginx LB]
-    B --> C[🟢 Node App #1]
-    B --> D[🟢 Node App #2]
-    C --> E[(🗄️ PostgreSQL)]
-    D --> E
-    E --> F[💾 Redis Cache]
-    style B fill:#00F5D4,stroke:#fff
-    style C fill:#00FF88,stroke:#fff
-    style D fill:#00FF88,stroke:#fff
+graph TD
+    A[🌅 Sol/Usuario] --> B[🌾 Molino LB: Nginx]
+    B --> C[🌱 Trigo Node #1]
+    B --> D[🌱 Trigo Node #2] 
+    B --> E[🌱 Trigo Node #3]
+    C --> F[💧 Pozo: PostgreSQL]
+    D --> F
+    E --> F
+    F --> G[🏚️ Granero: Redis]
+    style B fill:#CD853F,stroke:#FF8C00,stroke-width:3px
+    style C fill:#DAA520,stroke:#FF4500
+    style D fill:#DAA520,stroke:#FF4500
+    style E fill:#DAA520,stroke:#FF4500
