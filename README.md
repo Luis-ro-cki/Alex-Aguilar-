@@ -1,14 +1,19 @@
 <div align="center">
 
-# 🤖 BotHost
-### Aloja Bots como un Pro
+<img
+src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=240&section=header&text=🤖%20BotHost&desc=Aloja%20Bots%20como%20un%20Pro&fontSize=52&fontColor=000000&animation=twinkling&fontAlignY=38&descAlignY=58&descSize=22"
+width="100%"
+/>
 
 <!-- GIF ANIME KISS DE GITHUB - SI CARGA -->
 <img src="https://user-images.githubusercontent.com/47936500/141573453-774f60f3-4f1a-4c7e-81ef-78a5e62cf6a2.gif" width="400" alt="Anime Kiss"/>
 
+<br><br>
+
 <!-- BADGES -->
-[Status](https://img.shields.io/badge/STATUS-ONLINE-10B981?style=for-the-badge)
-[Hecho%20con%20❤️](https://img.shields.io/badge/Para%20mi%20Sakura-FF69B4?style=for-the-badge)
+<img src="https://img.shields.io/badge/STATUS-ONLINE-10B981?style=for-the-badge" />
+
+<img src="https://img.shields.io/badge/Para%20mi%20Sakura-FF69B4?style=for-the-badge" />
 
 </div>
 
