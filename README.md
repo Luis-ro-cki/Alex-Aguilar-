@@ -5,7 +5,7 @@ src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorL
 width="100%"
 />
 
-<br><br>
+<br>
 
 <!-- BADGES -->
 <img src="https://img.shields.io/badge/STATUS-ONLINE-10B981?style=for-the-badge" />
